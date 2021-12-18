@@ -1,0 +1,50 @@
+import random
+
+#player and cpu wins start at 0
+player_win = 0
+cpu_win = 0
+
+choices = ["rock", "paper", "scissors"]
+
+while True:
+  #immediately jumps into the game where you can either pick a choice or stop playing
+  player_input = input("Type rock/paper/scissors to begin playing or q to quit: ").lower()
+  if player_input == "q":
+    break
+  if player_input not in choices:
+    continue
+
+  random_number = random.randint(0, 2)
+  #assign values for rock (0), paper (1), and scissors (2)
+  cpu_pick = choices[random_number]
+  print("CPU picked", cpu_pick + ".")
+
+  #this is what happens if the player picks a winning choice
+  if player_input == "rock" and cpu_pick == "scissors":
+    print("Rock beats scissors. You win!")
+    player_win += 1
+  elif player_input == "scissors" and cpu_pick == "paper":
+    print("Scissors beat paper. You win!")
+    player_win += 1
+  elif player_input == "paper" and cpu_pick == "rock":
+    print("Paper beats rock. You win!")
+    player_win += 1
+  #this is what happens if the player picks a losing choice
+  elif player_input == "rock" and cpu_pick == "paper":
+    print("Paper beats rock. You lost!")
+    cpu_win += 1
+  elif player_input == "scissors" and cpu_pick == "rock":
+    print("Rock beats scissors. You lost!")
+    cpu_win += 1
+  elif player_input == "paper" and cpu_pick == "scissors":
+    print("Scissors beats paper. You lost!")
+    cpu_win += 1
+  #in cases that the player and cpu pick the same choice
+  else:
+    print("Tie!")
+
+#final scores for player and cpu and a farewell message
+print("You won", player_win, "times.")
+print("The CPU won", cpu_win, "times.")
+print("Bye! Please play again!")
+
